@@ -1,11 +1,14 @@
 import { ComponentProps } from 'lib/component-props';
 import { useEffect, useState } from 'react';
 import WheelComponent from './WheelComponent';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
 
 const WheelOfFortune = (props: ComponentProps): JSX.Element => {
   const sxaStyles = `${props.params?.styles || ''}`;
-
+  const { width, height } = useWindowSize();
   const [data, setData] = useState([]);
+  const [winner, setWinner] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -46,14 +49,20 @@ const WheelOfFortune = (props: ComponentProps): JSX.Element => {
   ];
   const onFinished = (winner: string) => {
     console.log(winner);
-    alert(winner);
+    setWinner(winner);
   };
   return (
     <div className={`text-cta ${sxaStyles}`}>
+      {winner && (
+        <>
+          <Confetti width={width} height={height} />
+          <h1 className="text-white text-3xl">The winner is: {winner}!</h1>
+        </>
+      )}
       <WheelComponent
         segments={data}
         segColors={segColors}
-        winningSegment={data[1]}
+        winningSegment={data[Math.floor(Math.random() * data.length)]}
         onFinished={(winner: string) => onFinished(winner)}
         primaryColor="black"
         contrastColor="white"
@@ -63,6 +72,7 @@ const WheelOfFortune = (props: ComponentProps): JSX.Element => {
         upDuration={100}
         downDuration={1000}
       />
+      )
     </div>
   );
 };
