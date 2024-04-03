@@ -72,7 +72,6 @@ const WheelOfFortune = (props: ComponentProps): JSX.Element => {
         upDuration={100}
         downDuration={1000}
       />
-      )
     </div>
   );
 };
