@@ -67,7 +67,7 @@ const WheelOfFortune = (props: ComponentProps): JSX.Element => {
         primaryColor="black"
         contrastColor="white"
         buttonText="Spin"
-        isOnlyOnce={true}
+        isOnlyOnce={false}
         size={290}
         upDuration={100}
         downDuration={1000}
