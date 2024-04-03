@@ -62,12 +62,12 @@ const WheelOfFortune = (props: ComponentProps): JSX.Element => {
       <WheelComponent
         segments={data}
         segColors={segColors}
-        winningSegment={data[Math.floor(Math.random() * data.length)]}
+        winningSegment={null}
         onFinished={(winner: string) => onFinished(winner)}
         primaryColor="black"
         contrastColor="white"
         buttonText="Spin"
-        isOnlyOnce={true}
+        isOnlyOnce={false}
         size={290}
         upDuration={100}
         downDuration={1000}
